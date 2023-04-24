@@ -1,0 +1,70 @@
+using System;
+using System.Collections.Generic;
+
+class Item
+{
+    public string Name { get; set; }
+    public string Type { get; set; }
+
+    public Item(string name, string type)
+    {
+        Name = name;
+        Type = type;
+    }
+}
+
+class Inventory
+{
+    static void Main()
+    {
+        
+        Console.Write("Enter number of items in inventory: ");
+        int numOfItems = int.Parse(Console.ReadLine());
+
+     
+        List<Item> items = new List<Item>();
+        for (int i = 0; i < numOfItems; i++)
+        {
+            Console.Write("Enter item name: ");
+            string itemName = Console.ReadLine();
+            Console.Write("Enter item type: ");
+            string itemType = Console.ReadLine();
+            Item item = new Item(itemName, itemType);
+            items.Add(item);
+        }
+
+      
+        Console.Write("Enter search mode (item type or 'ShowAll'): ");
+        string searchMode = Console.ReadLine();
+
+       
+        if (searchMode == "ShowAll")
+        {
+            Console.WriteLine("All items in inventory:");
+            foreach (Item item in items)
+            {
+                Console.WriteLine("{0} ({1})", item.Name, item.Type);
+            }
+        }
+        else
+        {
+            
+            List<Item> matchingItems = new List<Item>();
+            foreach (Item item in items)
+            {
+                if (item.Type == searchMode)
+                {
+                    matchingItems.Add(item);
+                }
+            }
+
+            Console.WriteLine("Items with type '{0}':", searchMode);
+            foreach (Item item in matchingItems)
+            {
+                Console.WriteLine(itemName);
+            }
+        }
+        Console.WriteLine("End");
+    }
+}
+
